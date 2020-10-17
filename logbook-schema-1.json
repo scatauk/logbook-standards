@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://github.com/scatauk/logbook-standards/blob/main/logbook-schema-1.json",
+  "$id": "https://github.com/scatauk/logbook-standards/blob/grantF/logbook-schema-1.json",
   "type": "object",
   "properties": {
     "name": { "type": "string"},
