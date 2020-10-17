@@ -34,10 +34,28 @@
         "type": "object",
         "properties": {
           "id": {"type":"number"},
-          "name": {"type":"string"},
           "role": {"type": "string", "enum": ["Patient","Performer","Supervisor"]}
         }
       }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type":"object",
+        "properties": {
+          "id": { "type": "integer"},
+          "event_type": { "type":"string","enum": ["procedure","teaching","simulation"]},
+          "event": {
+            "type":"object",
+            "properties":{
+              "description": { "type":"string", "enum":["GA","LA","GA/LA","Other"]},
+              "id": { "type":"integer"}
+            }
+          } 
+        }
+      }
+
     }
+
   }
 }
