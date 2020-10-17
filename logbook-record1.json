@@ -1,0 +1,39 @@
+{
+    "name": "encounter1",
+    "id": "123456",
+    "comment": "This is a comment",
+    "category": { 
+        "id": 0,
+        "category_name": "case",
+        "category_type": "Anaesthesia"
+    },
+    "activity_grouping": {
+        "activity_name": "Theatre List",
+        "id": "0"
+    },
+    "timing": {
+        "start": "2020-10-17T13:23:00+00:00",
+        "end": "2020-10-17T13:45:00+00:00"
+    },
+    "actors": [
+        {"id": 0,"role": "Patient"},
+        {"id": 1,"role": "Performer"},
+        {"id": 2,"role": "Supervisor"}    
+    ],
+    "events": [
+        {
+            "id": 0,
+            "event_type": "procedure",
+            "event": {
+                "id": 0,
+                "description": "GA"
+            },
+            "id": 1,
+            "event_type": "procedure",
+            "event": {
+                "id": 1,
+                "description":"LA"
+            }
+        }
+    ]
+}
