@@ -1,4 +1,6 @@
 {
     "name": "encounter1",
     "id": "123456",
+    "comment": "This is a comment",
+    "category":{ "id": 0, "name": ""}
 }

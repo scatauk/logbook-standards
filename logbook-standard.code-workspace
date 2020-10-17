@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "D:/Software/json-schema/logbook-standards"
+		}
+	],
+	"settings": {
+		"files.defaultLanguage": "json",
+		    "json.schemas": [
+
+        
+        {
+        "fileMatch": [
+            "/logbook-record*.json"
+        ],
+        "url": "./logbook-schema-1.json"
+    }
+    ]
+
+	}
+}
