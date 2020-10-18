@@ -20,7 +20,21 @@
         {"id": 2,"role": "Supervisor"}    
     ],
     "events": [
-        { "id":0, "event_type": "procedure", "event": {"id": 0, "description": "GA" }},
-        { "id":1, "event_type": "procedure", "event": {"id": 1, "description":"LA" }}
+        { "id":0, "event_type": "procedure", "event": {
+            "procedure": {
+                "category": {
+                    "general anaesthesia": { "induction": "Intravenous", "maintenance": "TIVA/TCI" }
+                }
+            }
+        }
+        },
+        { "id":1, "event_type": "procedure", "event": {
+            "procedure": {
+                "category": {
+                    "airway": {"tracheal intubation": "single lumen"}
+                }
+            }
+        }
+        }
     ]
 }
