@@ -2,7 +2,12 @@ module.exports = {
 
 	util: {
 		capitalize: function(s) {
-		    return s.charAt(0).toUpperCase() + s.slice(1);
+			if(!s) { 
+				return s;
+			}
+			else {
+		    	return s.charAt(0).toUpperCase() + s.slice(1);
+			}
 		}
 	},	
 	anaestheticsAppXlsxToStandard: function(filename) {
@@ -48,33 +53,30 @@ module.exports = {
 		//var fs = require("fs");
 		//fs.writeFile("irl.json", JSON.stringify(irl[0]), 'utf8', function(e){});
 
+		var sessionTranslation = {
+			"morning-0800-1300": "Morning",
+			"afternoon-1300-1800": "Afternoon",
+			"evening-1800-2200": "Evening",
+			"night-2200-0800": "Night",
+		};
+		var regionalTranslation = {
+			"Regional Type": "type",
+			"Regional Technique": "technique",
+			"Regional Catheter": "catheter",
+			"Regional Supervision": "supervision",
+			"Regional Notes": "notes"
+		};
+		var procedureTranslation = {
+			"Procedure Type": "type",
+			"Procedure Supervision": "supervision",
+			"Procedure Supervisor": "supervisor",
+			"Procedure Notes": "notes"
+		};
+
 		var outputList = [];
 
 		for (var i = 0; i < irl.length; i++) {
 		
-			var sessionTranslation = {
-				"morning-0800-1300": "Morning",
-				"afternoon-1300-1800": "Afternoon",
-				"evening-1800-2200": "Evening",
-				// if start > end then we'll auto-increment the day
-				"night-2200-0800": "Night",
-			};
-
-			var regionalTranslation = {
-				"Regional Type": "type",
-				"Regional Technique": "technique",
-				"Regional Catheter": "catheter",
-				"Regional Supervision": "supervision",
-				"Regional Notes": "notes"
-			};
-
-			var procedureTranslation = {
-				"Procedure Type": "type",
-				"Procedure Supervision": "supervision",
-				"Procedure Supervisor": "supervisor",
-				"Procedure Notes": "notes"
-			};
-
 			var session = irl[i]["Time"];
 			for(s in sessionTranslation) {
 				session = session.replace(s, sessionTranslation[s]);
@@ -140,48 +142,6 @@ module.exports = {
 
 			outputList.push(record);
 
-			/*
-			var record = {
-				"name": irl[i]["Personal Reference"],
-				"id": ,
-				"comment": "",
-				"category": { 
-					"id": 0,
-					"category_name": "case",
-					"category_type": "Anaesthesia"
-				},
-				"activity_grouping": {
-					"activity_name": "Theatre List",
-					"id": "0"
-				},
-				"timing": {
-					"start": rcoaBuildStartTime(irl[i]["Date"], irl[i]["Time"]),
-					"end": rcoaBuildEndTime(irl[i]["Date"], irl[i]["Time"])
-				},
-				"actors": [
-					{"id": 0,"role": "Patient"},
-					{"id": 1,"role": "Performer"},
-					{"id": 2,"role": "Supervisor"}    
-				],
-				"events": [
-					{
-						"id": 0,
-						"event_type": "procedure",
-						"event": {
-							"id": 0,
-							"description": "GA"
-						},
-						"id": 1,
-						"event_type": "procedure",
-						"event": {
-						"id": 1,
-						"description":"LA"
-						}                  
-					}
-				]
-			};
-			*/
-		
 		}
 
 		return outputList;

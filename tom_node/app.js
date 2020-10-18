@@ -15,7 +15,11 @@ app.get("/", (req, res) => {
 	res.render("index");
 });
 
-app.post("/uploaded", (req,res) => {
+
+app.get("/upload", (req,res) => {
+	res.render("upload");
+});
+app.post("/upload", (req,res) => {
 	form = new formidable.IncomingForm();
 	form.parse(req, function(err, fields, files) {
 		var oldpath = files.uploadFile.path;
@@ -26,11 +30,28 @@ app.post("/uploaded", (req,res) => {
 			records = lgbk.rcoaXlsxToStandard(newpath);
 
 			var fs = require("fs");
-			fs.writeFile("first_logbook.json", JSON.stringify(records), 'utf8', function(e){});
+			var uuid = require("uuid");
 
-			res.render("uploaded", {"file": {"name": files.uploadFile.name, "recordCount": records.length}});
+			var fileName = uuid.v4() + ".json";
+			var filePath = __dirname + "/logbooks/" + fileName;
+
+			fs.writeFile(filePath, JSON.stringify(records), 'utf8', function(e){});
+
+			res.render("uploaded", {"file": {"name": files.uploadFile.name, "recordCount": records.length, "downloadFileName": fileName}});
 		});
 	});
+});
+
+app.get("/logbooks/:file", (req,res) => {
+	var fs = require("fs");
+	var filePath = __dirname + "/logbooks/" + req.params["file"];
+	var stat = fs.statSync(filePath);
+	var file = fs.readFileSync(filePath, 'binary');
+	res.setHeader('Content-Length', stat.size);
+	res.setHeader('Content-Type', 'text/json');
+	res.setHeader('Content-Disposition', 'attachment; filename='+req.params["file"]);
+	res.write(file, 'binary');
+	res.end();
 });
 
 app.listen(port, () => {
