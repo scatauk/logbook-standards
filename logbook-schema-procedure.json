@@ -3,6 +3,15 @@
   "$id": "https://github.com/scatauk/logbook-standards/blob/grantF/logbook-schema-procedure.json",
   "type": "object",
   "properties": {
+      "category": {
+          "type": "object",
+          "properties": {
+              "airway": { "type": "object"},
+              "lines": { "type": "object"},
+              "regional blocks": { "type": "object" },
+              "general anaesthesia": { "type": "object" }
+          }
+      }
 
   }
 }

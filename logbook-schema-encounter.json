@@ -3,14 +3,11 @@
   "$id": "https://github.com/scatauk/logbook-standards/blob/grantF/logbook-schema-1.json",
   "type": "object",
   "properties": {
-    "name": { "type": "string"},
-    "id": { "type": "number"},
-    "comment": { "type": "string"},
+    "id": { "type": "integer"},
     "category": {
       "type": "object",
       "properties": {
-        "category_name": { "type": "string"},
-        "id": { "type": "number"},
+        "id": { "type": "integer"},
         "category_type": { "type": "string", "enum": ["Anaesthesia","ICM","Pain","Transfer","Resus"]}
       }
     },
@@ -18,14 +15,15 @@
       "type": "object",
       "properties": {
         "activity_name": { "type": "string", "enum": ["Theatre List","Ward Round","Clinic"]},
-        "id": { "type": "string" }
+        "id": { "type": "integer" }
       }
     },
     "timing": {
       "type": "object",
       "properties": {
         "start": { "type": "string", "format": "date-time"  },
-        "end": { "type": "string", "format": "date-time"  }
+        "end": { "type": "string", "format": "date-time"  },
+        "category": { "type": "string", "enum": ["Day","Evening","Night"]}
       }
     },
     "actors": {
@@ -47,9 +45,11 @@
           "event_type": { "type":"string","enum": ["procedure","teaching","simulation"]},
           "event": {
             "type":"object",
-            "properties":{
-              "description": { "type":"string", "enum":["GA","LA","GA/LA","Other"]},
-              "id": { "type":"integer"}
+            "properties": {
+              "procedure": { "$ref": "logbook-schema-procedure.json"},
+              "surgical procedure": { "type":"object"},
+              "teaching": { "type": "string"},
+              "simulation": { "type": "string"}
             }
           } 
         }
