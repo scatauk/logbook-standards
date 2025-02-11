@@ -1,3 +1,8 @@
+> **PLEASE NOTE** 
+> 
+> This repository has been archived and is read only as its contents has been superseded by more recent SCATA activity:
+>  https://github.com/scatauk/guidelines
+
 # logbook-standards
 
 ## Standards for Anaesthesia Logbooks
